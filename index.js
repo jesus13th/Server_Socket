@@ -5,6 +5,11 @@ let io = require("socket.io")(http);
 const port =2525;
 let players={};
 
+app.use(express.static(__dirname + '/public'));
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
 io.on("connection", (socket)=>{
     console.log('a user connected');
     socket.emit("connect");
